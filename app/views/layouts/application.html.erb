@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShoppingEmber</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+
+</head>
+<body>
+  <div class='navbar navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <a data-section='home' href='/' class='brand'>Shop</a>
+        <ul class='nav'>
+          <li><a data-section='women' href='/men'>Women</a></li>
+          <li><a data-section='men' href='/women'>Men</a></li>
+          <li><a data-section='home' href='/home'>Home</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='main' class='container'>
+    <script type="text/x-handlebars" data-template-name="index">
+      <div {{bindAttr class="active"}}>
+        <h1>{{title}}</h1>
+        {{view "App.ListView" contentBinding="list"}}
+        <div class='waypoint'></div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="item">
+      <article class='product item'>
+        {{#with "content"}}
+        <div><img {{bindAttr src="image_url"}}/></div>
+        <header>
+          <h2>{{designer_name}}</h2>
+          <h1>{{name}}</h1>
+          <p class="price">{{price}}</p>
+        </header>
+        {{/with}}
+      </article>
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='detail'>
+      <article id='detail' {{bindAttr class="active"}}>
+        {{#if content}}
+          {{#with content}}
+          <header>
+            <a href="#" {{action "back"}} class="navigable">Back to sales</a>
+          </header>
+          <aside>
+            <div><img {{bindAttr src="image_url"}}/></div>
+            <div></div>
+          </aside>
+          <section>
+            <header>
+              <h2>{{designer_name}}</h2>
+              <h1>{{name}}</h1>
+              <p class="price">{{price}}</p>
+            </header>
+            {{/with}}
+            <div class='action'>
+              <button {{bindAttr class="inCart"}} {{action "addToCart"}} {{bindAttr disabled="inCart"}}>{{cartStatus}}</button>
+            </div>
+            <div class='description'>
+              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. 
+              <ul>
+                <li>Vel illum dolore eu feugiat nulla facilisis at vero eros.</li>
+                <li>et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit.</li>
+                <li>100% augue duis dolore te feugait nulla facilisi.</li>
+                <li>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</li>
+              </ul>
+            </div>
+          </section>
+        {{/if}}
+      </article>
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<article type="text/x-handlebars" data-template-name="item" class="product item">
+  {{#with "content"}}
+  <div><img {{bindAttr src="image_url"}}/></div>
+  <header>
+    <h2>{{designer_name}}</h2>
+    <h1>{{name}}</h1>
+    <p class="price">{{price}}</p>
+  </header>
+  {{/with}}
+</article>
