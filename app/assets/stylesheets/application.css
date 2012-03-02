@@ -15,3 +15,7 @@ body {
 #list {
   clear: left;
 }
+
+#cart-wrap div {
+  display: inline;
+}

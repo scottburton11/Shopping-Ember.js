@@ -5,8 +5,6 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-
 </head>
 <body>
   <div class='navbar navbar-fixed-top'>
@@ -14,17 +12,31 @@
       <div class='container'>
         <a data-section='home' href='/' class='brand'>Shop</a>
         <ul class='nav'>
-          <li><a data-section='women' href='/men'>Women</a></li>
-          <li><a data-section='men' href='/women'>Men</a></li>
-          <li><a data-section='home' href='/home'>Home</a></li>
+          <li><a data-section='women' class='navigable' href='/men'>Men</a></li>
+          <li><a data-section='men' class='navigable' href='/women'>Women</a></li>
+          <li><a data-section='home' class='navigable' href='/home'>Home</a></li>
+        </ul>
+        <ul id='cart-wrap'class='nav pull-right'>
+          <li>
+            <a href='/cart'>
+              <script type="text/x-handlebars" >
+                {{#view "App.CartView" tagName="span"}}
+                  {{itemsInCart}}
+                {{/view}}
+              </script>
+              <i class='icon-shopping-cart icon-white'></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
   <div id='main' class='container'>
     <script type="text/x-handlebars" data-template-name="index">
-      <div {{bindAttr class="active"}}>
-        <h1>{{title}}</h1>
+      <div>
+        <div class="item placcard">
+          <h1>{{title}}</h1>
+        </div>
         {{view "App.ListView" contentBinding="list"}}
         <div class='waypoint'></div>
       </div>
@@ -44,11 +56,20 @@
     </script>
 
     <script type='text/x-handlebars' data-template-name='detail'>
-      <article id='detail' {{bindAttr class="active"}}>
+      <article id='detail'>
         {{#if content}}
           {{#with content}}
           <header>
-            <a href="#" {{action "back"}} class="navigable">Back to sales</a>
+            <ul class="breadcrumb">
+              <li>
+                <a {{bindAttr href="categoryFragment"}} class="navigable">{{category}}</a><span class='divider'>/</span>
+              </li>
+              <li class='active'>
+                <a {{bindAttr href="itemUrl"}} class="navigable">
+                  {{designer_name}} - {{name}}
+                </a>
+              </li>
+            </ul>
           </header>
           <aside>
             <div><img {{bindAttr src="image_url"}}/></div>

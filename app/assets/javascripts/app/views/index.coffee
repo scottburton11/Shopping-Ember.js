@@ -3,8 +3,6 @@ App.IndexView = Ember.View.extend
   classNames: ["index"]
 
   didInsertElement: ->
-  #   console.log "Index: didInsertElement"
-  #   console.log $('.waypoint').offset().top
     @setupWaypoint()
 
   logWaypoint: ->

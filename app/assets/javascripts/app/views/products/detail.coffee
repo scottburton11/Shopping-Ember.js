@@ -1,18 +1,15 @@
 App.DetailView = Ember.View.extend
   templateName: "detail"
   classNames: ["detail"]
-  inCartBinding: "content.inCart"
+  contentBinding: "contentController.content"
+  inCartBinding: "contentController.inCart"
 
   addToCart: (e) ->
-    @get("content").addToCart()
-    console.log e
+    @contentController.addToCart()
     e.preventDefault()
 
-  back: (e) ->
-    e.preventDefault()
-    console.log e
-    # href = $(e).attr("href")
-    # App.navigate(href)
-    App.main.index()
+  # inCart: (-> @get("contentController").get("inCart")).property("content")
 
-  cartStatus: Ember.computed(-> if @get("inCart") then "In Cart" else "Add To Cart").property("inCart")
+  cartStatus: (-> if @get("inCart") then "In Cart" else "Add To Cart").property("inCart")
+
+  categoryFragment: (-> "/" + @get("category").toLowerCase()).property("category")

@@ -2,23 +2,39 @@ App.ItemsController = Ember.ArrayController.extend
 
   init: ->
     @_super()
-    @.set("content", [])
-    @.set("page", 0)
-    @.set("next_page", 1)
-    @.set("total_pages", 1)
-    @.set("per_page", 20)
+    @resetContent()
+
+  categoryDidChange: (-> @resetContent()).observes("category")
+
+  resetContent: ->
+    @set("page", 0)
+    @set("next_page", 1)
+    @set("total_pages", 1)
+    @set("content", [])
+
+  per_page: (->
+    if @get("next_page") is 1 then 19 else 20
+    ).property("next_page")
+
+  categoryTitle: (->
+    @get("category").titleize()
+    ).property("category")
+
+  categoryFragment: (->
+    @get("category").toLowerCase()
+    ).property("category")
 
   getItems: ->
     self = @
     $.ajax
-      url: "/products"
+      url: "/products/"
       type: "GET"
       contentType: "application/json"
       dataType: "json"
       data: 
         page: @.get("next_page")
-        per_page: @.get("per_page")
-        category: @.get("category")
+        per_page: @get("per_page")
+        category: @get("category")
 
       success: (data, status, xhr) ->
         self.setContent(data)
@@ -35,4 +51,4 @@ App.ItemsController = Ember.ArrayController.extend
     kv = header.split(": ")
     key = kv[0]
     value = kv[1]
-    @.set(key, parseInt(value))
+    @set(key, parseInt(value))

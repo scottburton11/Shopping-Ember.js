@@ -34,4 +34,8 @@ class Product
     page = (params.delete(:page) || 1).to_i
     get "/products", :query => {:per_page => per_page, :page => page}.merge(params)
   end
+
+  def self.find(id)
+    get "/products/#{id}"
+  end
 end

@@ -39,6 +39,16 @@
   }
 }
 
+.item.placcard {
+  background-color: #272727;
+  >h1 {
+    color: #F2F2F0;
+    font-size: 42px;
+    text-align: center;
+    margin-top: 100px;
+  }
+}
+
 .waypoint {
   clear: both;
   width: 100%;

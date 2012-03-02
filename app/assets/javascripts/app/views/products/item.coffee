@@ -3,10 +3,13 @@ App.ItemView = Ember.View.extend
   className: ["product"]
 
   didInsertElement: ->
-    # console.log "Child: didInsertElement"
     $.waypoints("refresh")
 
   click: (e) ->
-    App.main.show @get("content")
+    content = @get("content")
+    App.router.navigate ("/products/" + content.id), 
+      content.get("title"), 
+      name: content.get("name"), 
+      designer_name: content.get("designer_name"), 
+      id: content.get("id")  
     e.preventDefault()
-    
