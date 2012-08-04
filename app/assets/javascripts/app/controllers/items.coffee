@@ -4,7 +4,7 @@ App.ItemsController = Ember.ArrayController.extend
     @_super()
     @resetContent()
 
-  categoryDidChange: (-> @resetContent()).observes("category")
+  storeDidChange: (-> @resetContent()).observes("store")
 
   resetContent: ->
     @set("page", 0)
@@ -16,13 +16,13 @@ App.ItemsController = Ember.ArrayController.extend
     if @get("next_page") is 1 then 19 else 20
     ).property("next_page")
 
-  categoryTitle: (->
-    @get("category").titleize()
-    ).property("category")
+  storeTitle: (->
+    @get("store").titleize()
+    ).property("store")
 
-  categoryFragment: (->
-    @get("category").toLowerCase()
-    ).property("category")
+  storeFragment: (->
+    @get("store").toLowerCase()
+    ).property("store")
 
   getItems: ->
     self = @
@@ -34,7 +34,7 @@ App.ItemsController = Ember.ArrayController.extend
       data: 
         page: @.get("next_page")
         per_page: @get("per_page")
-        category: @get("category")
+        store: @get("store")
 
       success: (data, status, xhr) ->
         self.setContent(data)

@@ -38,12 +38,12 @@ $ ->
       App.main.index.rebindWaypoint()
 
     men: ->
-      App.main.itemsController.set("category", "MEN")
+      App.main.itemsController.set("store", "men")
       App.main.itemsController.getItems()
       App.manager.index()
 
     women: ->
-      App.main.itemsController.set("category", "WOMEN")
+      App.main.itemsController.set("store", "women")
       App.main.itemsController.getItems()
       App.manager.index()
 

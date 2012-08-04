@@ -12,4 +12,8 @@ App.DetailView = Ember.View.extend
 
   cartStatus: (-> if @get("inCart") then "In Cart" else "Add To Cart").property("inCart")
 
-  categoryFragment: (-> "/" + @get("category").toLowerCase()).property("category")
+  storeFragment: (-> "/" + @get("store").toLowerCase()).property("store")
+
+  descriptionItems: (->
+    @get("content").description.split(/\s\s/)
+    ).property("content")

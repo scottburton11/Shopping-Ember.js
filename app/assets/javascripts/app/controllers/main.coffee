@@ -2,11 +2,11 @@ App.MainController = Ember.Object.extend
 
   init: -> 
     @_super()
-    @itemsController = App.ItemsController.create(category: "MEN")
+    @itemsController = App.ItemsController.create(store: "men")
 
     @index = App.IndexView.create
       list: @itemsController
-      titleBinding: "list.categoryTitle"  
+      titleBinding: "list.storeTitle"  
 
     @detailController = App.ProductController.create
       content: null
@@ -15,7 +15,7 @@ App.MainController = Ember.Object.extend
     @detail = App.DetailView.create
       contentController: @detailController
       # inCartBinding: "contentController.inCart"
-      categoryBinding: "@itemsController.category"
+      storeBinding: "@itemsController.store"
 
 
   render: ->
@@ -27,7 +27,7 @@ App.MainController = Ember.Object.extend
 
 
   # App.itemsController = App.ItemsController.create
-  #   category: "MEN"
+  #   store: "MEN"
 
   # App.index = 
 
@@ -40,4 +40,4 @@ App.MainController = Ember.Object.extend
   # App.detail = App.DetailView.create
   #   inCartBinding: "App.detailController.inCart"
   #   contentController: App.detailController
-  #   categoryBinding: "App.itemsController.category"
+  #   storeBinding: "App.itemsController.store"

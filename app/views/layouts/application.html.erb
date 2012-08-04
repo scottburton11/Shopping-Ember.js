@@ -44,8 +44,8 @@
 
     <script type="text/x-handlebars" data-template-name="item">
       <article class='product item'>
-        {{#with "content"}}
-        <div><img {{bindAttr src="image_url"}}/></div>
+        {{#with content}}
+        <div><img {{bindAttr src="images.small.path"}}/></div>
         <header>
           <h2>{{designer_name}}</h2>
           <h1>{{name}}</h1>
@@ -62,7 +62,7 @@
           <header>
             <ul class="breadcrumb">
               <li>
-                <a {{bindAttr href="categoryFragment"}} class="navigable">{{category}}</a><span class='divider'>/</span>
+                <a {{bindAttr href="storeFragment"}} class="navigable">{{store}}</a><span class='divider'>/</span>
               </li>
               <li class='active'>
                 <a {{bindAttr href="itemUrl"}} class="navigable">
@@ -72,10 +72,12 @@
             </ul>
           </header>
           <aside>
-            <div><img {{bindAttr src="image_url"}}/></div>
+            <div><img {{bindAttr src="images.medium.path"}}/></div>
             <div></div>
           </aside>
+          {{/with}}
           <section>
+            {{#with content}}
             <header>
               <h2>{{designer_name}}</h2>
               <h1>{{name}}</h1>
@@ -83,15 +85,13 @@
             </header>
             {{/with}}
             <div class='action'>
-              <button {{bindAttr class="inCart"}} {{action "addToCart"}} {{bindAttr disabled="inCart"}}>{{cartStatus}}</button>
+              <button class='btn btn-info' {{bindAttr class="inCart"}} {{action "addToCart"}} {{bindAttr disabled="inCart"}}>{{cartStatus}}</button>
             </div>
             <div class='description'>
-              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. 
               <ul>
-                <li>Vel illum dolore eu feugiat nulla facilisis at vero eros.</li>
-                <li>et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit.</li>
-                <li>100% augue duis dolore te feugait nulla facilisi.</li>
-                <li>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</li>
+                {{#each "descriptionItems"}}
+                  <li>{{this}}</li>
+                {{/each}}
               </ul>
             </div>
           </section>
