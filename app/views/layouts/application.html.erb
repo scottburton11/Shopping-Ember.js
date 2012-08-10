@@ -37,21 +37,25 @@
         <div class="item placcard">
           <h1>{{title}}</h1>
         </div>
-        {{view "App.ListView" contentBinding="list"}}
+        <div class='products list'>
+          {{#each list}}
+            {{view "App.ItemView" contentBinding="this"}}
+          {{/each}}
+        </div>
         <div class='waypoint'></div>
       </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="item">
       <article class='product item'>
-        {{#with content}}
+
         <div><img {{bindAttr src="images.small.path"}}/></div>
         <header>
           <h2>{{designer_name}}</h2>
           <h1>{{name}}</h1>
           <p class="price">{{price}}</p>
         </header>
-        {{/with}}
+
       </article>
     </script>
 

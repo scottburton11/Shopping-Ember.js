@@ -1,3 +1,3 @@
-App.ListView = Ember.CollectionView.extend
+App.ListView = Ember.View.extend
   itemViewClass: "App.ItemView"
   classNames: ["products list"]
