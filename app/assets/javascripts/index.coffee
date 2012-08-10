@@ -1,5 +1,5 @@
 //= require ./lib/handlebars
-//= require ./lib/ember.min
+//= require ./lib/ember
 //= require_tree ./lib
 
 //= require app/app
